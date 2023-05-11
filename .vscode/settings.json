@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ],
+    "vscode_custom_css.imports":["file:///C:/Users/kropi/.vscode/vscode_style/vscode_style.css"],
+}
