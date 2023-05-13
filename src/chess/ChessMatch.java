@@ -29,6 +29,7 @@ public class ChessMatch {
         Position source = sourcePosition.toPosition(); // converte a posição de xadrez para posição de matriz
         Position target = targetPosition.toPosition(); // converte a posição de xadrez para posição de matriz
         validateSourcePosition(source); // valida a posição de origem
+        validadeTargetPosition(source, target); // valida a posição de destino
         Piece capturedPiece = makeMove(source, target); // faz o movimento
         return (ChessPiece)capturedPiece;
     }
@@ -48,12 +49,18 @@ public class ChessMatch {
         }
     }
 
+    private void validadeTargetPosition(Position source, Position target) {
+        if(!board.piece(source).possibleMove(target)){
+            throw new ChessException("A peça escolhida não pode se mover para a posição de destino");
+        }
+    }
+
     private void placeNewPiece(char column, int row, ChessPiece piece){
         board.placePiece(piece, new ChessPosition(column, row).toPosition()); // coloca uma nova peça no tabuleiro
     }
     
     private void initialSetup(){
-        placeNewPiece('d', 1, new King(board, Color.WHITE));
+        placeNewPiece('d', 1,new King(board, Color.WHITE));
         placeNewPiece('d', 2,new Rook(board, Color.WHITE));
         placeNewPiece('e', 1,new Rook(board, Color.WHITE));
         placeNewPiece('e', 2,new Rook(board, Color.WHITE));
@@ -63,7 +70,7 @@ public class ChessMatch {
         
         
         
-        placeNewPiece('d', 8, new King(board, Color.BLACK));
+        placeNewPiece('d', 8,new King(board, Color.BLACK));
         placeNewPiece('c', 8,new Rook(board, Color.BLACK));
         placeNewPiece('c', 7,new Rook(board, Color.BLACK));
         placeNewPiece('d', 7,new Rook(board, Color.BLACK));
